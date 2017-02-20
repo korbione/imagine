@@ -108,12 +108,12 @@ public class MiniBookService implements IMiniBookService {
 
         private Lock lock = new ReentrantLock();
 
-        public Store(IQuotesCompareStrategy sortStrategy) {
+        Store(IQuotesCompareStrategy sortStrategy) {
             this.quotes = new HashSet<>();
             this.sortStrategy = sortStrategy;
         }
 
-        public void proceed(IQuoteAction action, Quote quote) {
+        void proceed(IQuoteAction action, Quote quote) {
             try {
                 lock.lock();
                 action.proceed(quote, quotes);
@@ -122,7 +122,7 @@ public class MiniBookService implements IMiniBookService {
             }
         }
 
-        public List<Quote> getSortedList() {
+        List<Quote> getSortedList() {
             ArrayList<Quote> sortedQuotes;
 
             try {
